@@ -1,4 +1,36 @@
 import "./styles.css";
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    color: "#E84F33",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    color: "#FF3B00",
+  },
+];
 
 export default function App() {
   return (
@@ -30,24 +62,38 @@ function Info() {
     </div>
   );
 }
+// OLOD WAY OF USING PROPS USINF OBJECT TO STORE PROPS DETAILS
+// function SkillSet() {
+//   return (
+//     <div className="skill-list">
+//       <Skills title="web Design" emoji="😂" color="blue" />
+//       <Skills title="JS" emoji="'🤷‍♂️" color="red" />
+//       <Skills title="Git" emoji="🤧" color="green" />
+//       <Skills title="React" emoji="🥳" color="yellow" />
+//     </div>
+//   );
+// }
 function SkillSet() {
   return (
-    <div className="skill-list">
-      <Skills title="web Design" emoji="😂" color="blue" />
-      <Skills title="JS" emoji="'🤷‍♂️" color="red" />
-      <Skills title="Git" emoji="🤧" color="green" />
-      <Skills title="React" emoji="🥳" color="yellow" />
-    </div>
+    <ul className="skill-list">
+      {skills.map((s) => (
+        <Skills key={1} sObj={s} />
+      ))}
+    </ul>
   );
 }
 
 function Skills(props) {
+  let level = props.sObj.level;
+  if (level === "advanced") level = "😘";
+  if (level === "intermediate") level = "🤧";
+  if (level === "beginner") level = "😂";
   return (
     <>
-      <div className="skill" style={{ backgroundColor: props.color }}>
-        <span>{props.title}</span>
-        <span>{props.emoji}</span>
-      </div>
+      <l1 className="skill" style={{ backgroundColor: props.sObj.color }}>
+        <h2>{props.sObj.skill}</h2>
+        <span>{level}</span>
+      </l1>
     </>
   );
 }
